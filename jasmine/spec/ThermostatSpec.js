@@ -1,3 +1,5 @@
+'use strict'
+
 describe("Thermostat", function() {
   var thermostat;
 
@@ -110,6 +112,23 @@ describe("Thermostat", function() {
     it('return false if power saving is off', function() {
       thermostat.switchPowerSave();
       expect(thermostat.isPowerSaving()).toEqual(false);
+    });
+  });
+
+  describe('energy usage', function() {
+    it('return low-usage when under 18 degree', function() {
+      thermostat.setTemperature(15);
+      expect(thermostat.getEnergyUsage()).toEqual('low-usage');
+    });
+
+    it('return medium-usage when between 18 and 24', function() {
+      expect(thermostat.getEnergyUsage()).toEqual('medium-usage');
+    });
+
+    it('return high-usage when over 24', function() {
+      thermostat.switchPowerSave()
+      thermostat.setTemperature(28);
+      expect(thermostat.getEnergyUsage()).toEqual('high-usage');
     });
   });
 });
