@@ -1,8 +1,11 @@
 const DEFAULT_TEMPERATURE = 20;
 const MINIMUM_TEMPERATURE = 10;
+const MAXIMUM_TEMPERATURE_POWER_SAVING = 25;
+const MAXIMUM_TEMPERATURE = 32;
 
 function Thermostat() {
   this._temperature = DEFAULT_TEMPERATURE;
+  this._powerSave = true
 };
 
 Thermostat.prototype.getCurrentTemperature = function() {
@@ -10,17 +13,32 @@ Thermostat.prototype.getCurrentTemperature = function() {
 };
 
 Thermostat.prototype.increaseTemperature = function() {
+  let max_temp = this._powerSave ? MAXIMUM_TEMPERATURE_POWER_SAVING : MAXIMUM_TEMPERATURE;
+  let message = `Can't increase the temperature over than ${max_temp} degrees`
+  if (this._temperature >= max_temp) throw new TypeError(message);
+
   this._temperature++;
 };
 
 Thermostat.prototype.decreaseTemperature = function() {
-  if (this._temperature === MINIMUM_TEMPERATURE) {
-    throw new TypeError("Can't decrease the temperature lower than 10 degrees");
-  }
+  let message = `Can't decrease the temperature lower than ${MINIMUM_TEMPERATURE} degrees`
+  if (this._temperature <= MINIMUM_TEMPERATURE) throw new TypeError(message);
 
   this._temperature--;
 };
 
 Thermostat.prototype.resetTemperature = function() {
   this._temperature = DEFAULT_TEMPERATURE;
+};
+
+Thermostat.prototype.isPowerSaving = function() {
+  return this._powerSave;
+};
+
+Thermostat.prototype.switchPowerSave = function() {
+  this._powerSave ? this._powerSave = false : this._powerSave = true;
+};
+
+Thermostat.prototype.setTemperature = function(temperature) {
+  this._temperature = temperature;
 };
