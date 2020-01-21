@@ -5,42 +5,40 @@ describe("Thermostat", function() {
     thermostat = new Thermostat();
   });
 
-  it('thermostat starts at 20 degrees', function() {
-    expect(thermostat.temperature).toEqual(20);
+  it('starts at default temperature', function() {
+    expect(thermostat.getCurrentTemperature()).toEqual(DEFAULT_TEMPERATURE);
   });
 
   it('increase the temperature by one degree', function() {
     thermostat.increaseTemperature();
-    expect(thermostat.temperature).toEqual(21);
+    expect(thermostat.getCurrentTemperature()).toEqual(21);
   });
 
-  it('increase the temperature by one degree', function() {
+  it('increase the temperature by two degree', function() {
     thermostat.increaseTemperature();
     thermostat.increaseTemperature();
-    expect(thermostat.temperature).toEqual(22);
+    expect(thermostat.getCurrentTemperature()).toEqual(22);
   });
 
   it('decrease the temperature by one degree', function() {
     thermostat.decreaseTemperature();
-    expect(thermostat.temperature).toEqual(19);
+    expect(thermostat.getCurrentTemperature()).toEqual(19);
   });
 
-  it('decrease the temperature by one degree', function() {
+  it('decrease the temperature by two degree', function() {
     thermostat.decreaseTemperature();
     thermostat.decreaseTemperature();
-    expect(thermostat.temperature).toEqual(18);
+    expect(thermostat.getCurrentTemperature()).toEqual(18);
   });
 
-  it('displays an error if temperature is less than 10 degrees', function() {
-    thermostat.temperature = 10;
-    console.log(thermostat.temperature)
-    expect( function() {thermostat.decreaseTemperature()}).toThrowError('brrr, that seems a bit nippy!');
-  })
+  it('throw an error when trying to reduce temperature lower than minimum value', function() {
+    thermostat._temperature = 10;
+    expect( function() {thermostat.decreaseTemperature()}).toThrowError("Can't decrease the temperature lower than 10 degrees");
+  });
 
-  it('temperature can reset to 20 using the reset function', function() {
-    thermostat.temperature = 25;
+  it('reset temperature to default value', function() {
+    thermostat._temperature = 25;
     thermostat.resetTemperature();
-    expect(thermostat.temperature).toEqual(20);
-  })
-
+    expect(thermostat.getCurrentTemperature()).toEqual(DEFAULT_TEMPERATURE);
+  });
 });

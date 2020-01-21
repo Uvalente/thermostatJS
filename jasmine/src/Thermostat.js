@@ -1,19 +1,26 @@
+const DEFAULT_TEMPERATURE = 20;
+const MINIMUM_TEMPERATURE = 10;
+
 function Thermostat() {
-  this.temperature = 20;
-}
+  this._temperature = DEFAULT_TEMPERATURE;
+};
+
+Thermostat.prototype.getCurrentTemperature = function() {
+  return this._temperature;
+};
 
 Thermostat.prototype.increaseTemperature = function() {
-  this.temperature++
+  this._temperature++;
 };
 
 Thermostat.prototype.decreaseTemperature = function() {
-  if (this.temperature === 10) {
-    throw new TypeError('brrr, that seems a bit nippy!');
+  if (this._temperature === MINIMUM_TEMPERATURE) {
+    throw new TypeError("Can't decrease the temperature lower than 10 degrees");
   }
 
-  this.temperature--
+  this._temperature--;
 };
 
 Thermostat.prototype.resetTemperature = function() {
-  this.temperature = 20
+  this._temperature = DEFAULT_TEMPERATURE;
 };
