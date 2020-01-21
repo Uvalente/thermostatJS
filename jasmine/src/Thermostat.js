@@ -40,5 +40,11 @@ Thermostat.prototype.switchPowerSave = function() {
 };
 
 Thermostat.prototype.setTemperature = function(temperature) {
+  let minimumMessage = `Can't decrease the temperature lower than ${MINIMUM_TEMPERATURE} degrees`
+  let max_temp = this._powerSave ? MAXIMUM_TEMPERATURE_POWER_SAVING : MAXIMUM_TEMPERATURE;
+  let maximumMessage = `Can't increase the temperature over than ${max_temp} degrees`
+  if (temperature <= MINIMUM_TEMPERATURE) throw new TypeError(minimumMessage);
+  if (temperature >= max_temp) throw new TypeError(maximumMessage)
+
   this._temperature = temperature;
 };
