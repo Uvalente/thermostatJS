@@ -40,6 +40,7 @@ Thermostat.prototype.isPowerSaving = function() {
 
 Thermostat.prototype.switchPowerSave = function() {
   this._powerSave ? this._powerSave = false : this._powerSave = true;
+  if (this.getCurrentTemperature() > MAXIMUM_TEMPERATURE_POWER_SAVING) this.setTemperature(MAXIMUM_TEMPERATURE_POWER_SAVING);
 };
 
 Thermostat.prototype.setTemperature = function(temperature) {

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" href="thermostat.css">
+  <title>Thermostat</title>
+</head>
+<body>
+  <script src='jquery-3.4.1.js'></script>
+  <script src="jasmine/src/thermostat.js"></script>
+  <script src='jasmine/src/interface.js'></script>
+  <main>
+    <button class="modify-temperature increase">increase</button>
+    <button class="modify-temperature decrease">decrease</button>
+    <button class="modify-temperature reset">reset</button>
+    <h1 id='current-temperature' class='medium-usage'>Current Temperature</h1>
+    <p>Power saving mode is <span class='power-saving-status'>on</span></p>
+    <button class="power-saving">change power saving</button>
+  </main>
+</body>
+</html>
