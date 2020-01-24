@@ -1,23 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" type="text/css" href="thermostat.css">
+  <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One|Righteous&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="public/reset.css">
+  <link rel="stylesheet" type="text/css" href="public/thermostat.css">
   <title>Thermostat</title>
 </head>
+
 <body>
+  <main>
+    <div class="left-side">
+      <h1 id='current-temperature' class='medium-usage'>20</h1>
+      <div class="temperature-wrapper">
+        <span class="modify-temperature increase">+</span>
+        <span class="modify-temperature decrease">-</span>
+      </div>
+      <span class="modify-temperature reset">reset</span>
+    </div>
+    <div class="right-side">
+      <div class="switch-wrapper">
+        <p>PMS</p>
+        <label class="switch power-saving">
+          <input type="checkbox" checked>
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div class="city-wrapper">
+        <div class='city-temperature'></div>
+        <select>
+          <option value="London">London</option>
+          <option value="Madrid">Madrid</option>
+          <option value="Rome">Rome</option>
+          <option value="Paris">Paris</option>
+          <option value="Berlin">Berlin</option>
+        </select>
+      </div>
+    </div>
+    <div class='color-side'></div>
+  </main>
   <script src='jquery-3.4.1.js'></script>
   <script src="jasmine/src/thermostat.js"></script>
   <script src='jasmine/src/interface.js'></script>
-  <main>
-    <button class="modify-temperature increase">increase</button>
-    <button class="modify-temperature decrease">decrease</button>
-    <button class="modify-temperature reset">reset</button>
-    <h1 id='current-temperature' class='medium-usage'>Current Temperature</h1>
-    <p>Power saving mode is <span class='power-saving-status'>on</span></p>
-    <button class="power-saving">change power saving</button>
-  </main>
 </body>
+
 </html>
